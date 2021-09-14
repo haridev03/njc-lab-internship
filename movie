@@ -1,0 +1,30 @@
+import sqlite3
+import time
+import datetime
+import random
+
+conn = sqlite3.connect('movie.db')
+c = conn.cursor()
+
+def create_table():
+    c.execute("CREATE TABLE IF NOT EXISTS intresrtingmovies(slno REAL,moviename TEXT, actor TEXT , actress TEXT,year REAL, directorname TEXT)")
+
+
+def data_entry():
+    c.execute("INSERT INTO intrestingmovies VALUES(1,'Home','Indrans','Mnjupillai',2021,'Rojinthomas')")
+     c.execute("INSERT INTO intrestingmovies VALUES(2,'Endgame','Rdj','Scarllet',2019,'AntonioRusso')")
+    
+    conn.commit()
+    c.close()
+    conn.close()
+
+def read_from_db():
+    c.execute('SELECT * FROM intrestingmovies')
+    data = c.fetchall()
+    print(data)
+    for row in data:
+        print(row)
+    
+read_from_db()
+c.close
+conn.close()
